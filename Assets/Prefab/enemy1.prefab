@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 377442073}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShotPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1369174706}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShotPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1921977608}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShotPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 975725365}
   - component: {fileID: 975725363}
   - component: {fileID: 975725364}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: enemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,4 +225,6 @@ MonoBehaviour:
   speed: 0.5
   shotDelay: 0.8
   bullet: {fileID: 739515367545073748, guid: 94ed89981e7c8c1478260cad82354e21, type: 3}
+  explosion: {fileID: 906346567846800075, guid: e5cfe0a70c626694daa905e77027cb81,
+    type: 3}
   canShot: 0
