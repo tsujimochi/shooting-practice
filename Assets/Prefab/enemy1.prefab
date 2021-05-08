@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 975725365}
   - component: {fileID: 975725363}
   - component: {fileID: 975725364}
+  - component: {fileID: 9125920306347597819}
   m_Layer: 9
   m_Name: enemy1
   m_TagString: Untagged
@@ -163,8 +164,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 509703781
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 24206377c1064e0458275b623884ad8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -227,4 +228,20 @@ MonoBehaviour:
   bullet: {fileID: 739515367545073748, guid: 94ed89981e7c8c1478260cad82354e21, type: 3}
   explosion: {fileID: 906346567846800075, guid: e5cfe0a70c626694daa905e77027cb81,
     type: 3}
-  canShot: 0
+  canShot: 1
+--- !u!58 &9125920306347597819
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288438940807552468}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.25
