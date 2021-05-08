@@ -2,27 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Spaceship
 {
-    // Spaceshipコンポーネント
-    Spaceship spaceship;
-
     IEnumerator Start ()
     {
-        // Spaceshipコンポーネントを取得
-        spaceship = GetComponent<Spaceship>();
 
-        if (spaceship.canShot == false) {
+        if (canShot == false) {
             yield break;
         }
 
         while (true) {
             // 弾をプレイヤーと同じ位置/角度で作成
-            spaceship.Shot(transform);
+            Shot(transform);
             // ショット音を鳴らす
             GetComponent<AudioSource>().Play();
             // shotDelay秒待つ
-            yield return new WaitForSeconds(spaceship.shotDelay);
+            yield return new WaitForSeconds(shotDelay);
         }
     }
 
@@ -37,7 +32,29 @@ public class Player : MonoBehaviour
 		// 移動する向きを求める
 		Vector2 direction = new Vector2 (x, y).normalized;
 		
-        spaceship.Move(direction);
+        Move(direction);
+    }
+
+    protected override void Move(Vector2 direction)
+    {
+        // 画面左下のワールド座標をビューポートから取得
+        Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+        // 画面右上のワールド座標をビューポートから取得
+        Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
+        // プレイヤーの座標を取得
+        Vector2 pos = transform.position;
+
+        pos += direction * speed * Time.deltaTime;
+
+        // プレイヤーのサイズを取得
+        Vector2 size = GetComponent<BoxCollider2D>().size;
+
+        // プレイヤーの位置が画面内に収まるように制限をかける
+        pos.x = Mathf.Clamp(pos.x, min.x + (size.x / 2), max.x - (size.x / 2));
+        pos.y = Mathf.Clamp(pos.y, min.y + (size.y / 2), max.y - (size.y / 2));
+
+        // 制限をかけた値をプレイヤーの位置とする
+        transform.position = pos;
     }
 
     /// <summary>
@@ -60,7 +77,7 @@ public class Player : MonoBehaviour
         if (layerName == "Bullet(Enemy)" || layerName == "Enemy")
         {
             // 爆発する
-            spaceship.Explosion();
+            Explosion();
             // プレイヤーの削除
             Destroy(gameObject);
         }

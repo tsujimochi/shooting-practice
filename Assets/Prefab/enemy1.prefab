@@ -102,7 +102,6 @@ GameObject:
   - component: {fileID: 8032641583412845360}
   - component: {fileID: 975725365}
   - component: {fileID: 975725363}
-  - component: {fileID: 975725364}
   - component: {fileID: 9125920306347597819}
   m_Layer: 9
   m_Name: enemy1
@@ -211,24 +210,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09c6c07aab26af4c8d280f56d7837ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &975725364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 288438940807552468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d86a0ca28793abf489a37a9579d70454, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   speed: 0.5
-  shotDelay: 0.8
+  shotDelay: 1
   bullet: {fileID: 739515367545073748, guid: 94ed89981e7c8c1478260cad82354e21, type: 3}
   explosion: {fileID: 906346567846800075, guid: e5cfe0a70c626694daa905e77027cb81,
     type: 3}
-  canShot: 1
+  canShot: 0
 --- !u!58 &9125920306347597819
 CircleCollider2D:
   m_ObjectHideFlags: 0
