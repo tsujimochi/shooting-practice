@@ -6,7 +6,6 @@ public class Player : Spaceship
 {
     IEnumerator Start ()
     {
-
         if (canShot == false) {
             yield break;
         }

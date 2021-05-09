@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 975725365}
   - component: {fileID: 975725363}
   - component: {fileID: 9125920306347597819}
+  - component: {fileID: 8597386238892957392}
   m_Layer: 9
   m_Name: enemy1
   m_TagString: Untagged
@@ -216,6 +217,7 @@ MonoBehaviour:
   explosion: {fileID: 906346567846800075, guid: e5cfe0a70c626694daa905e77027cb81,
     type: 3}
   canShot: 0
+  hp: 1
 --- !u!58 &9125920306347597819
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -232,3 +234,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.25
+--- !u!95 &8597386238892957392
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288438940807552468}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4d7fe36f29629964e9c43a4eaa51bfc6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

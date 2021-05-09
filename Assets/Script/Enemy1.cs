@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Enemy1 : Spaceship
 {
+    // ヒットポイント
+    public int hp = 1;
+
     IEnumerator Start()
     {
         // ローカル座標のY軸のマイナス方向に移動する
@@ -43,17 +46,29 @@ public class Enemy1 : Spaceship
         // レイヤー名を取得
         string layerName = LayerMask.LayerToName(c.gameObject.layer);
 
-        // レイヤー名がBullet(Enemy)の時は弾を削除
+        // レイヤー名がBullet(Player)以外の時は何も行わない
         if (layerName != "Bullet(Player)")
         {
             return;
         }
 
+        // Bulletコンポーネントを取得
+        Bullet bullet = c.GetComponent<Bullet>();
+
+        // ヒットポイントを減らす
+        hp = hp - bullet.power;
+
         // 弾の削除
         Destroy(c.gameObject);
-        // 爆発する
-        Explosion();
-        // プレイヤーの削除
-        Destroy(gameObject);
+
+        if (hp <= 0) 
+        {
+            // 爆発する
+            Explosion();
+            // プレイヤーの削除
+            Destroy(gameObject);
+        } else {
+            GetAnimator().SetTrigger("Damage");
+        }
     }
 }
