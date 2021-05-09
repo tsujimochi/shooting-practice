@@ -4,30 +4,37 @@ using UnityEngine;
 
 public class Enemy1 : Spaceship
 {
-    // ヒットポイント
-    public int hp = 1;
+    #region // インスペクターで設定
+    [Header("ヒットポイント")] public int hp = 1;
+    [Header("スコアのポイント")] public int point = 100;
+    #endregion
 
-    // スコアのポイント
-    public int point = 100;
+    #region 定数
+    // プレイヤーの弾のレイヤー名
+    private string LAYER_PLAYER_BULLET_NAME = "Bullet(Player)";
+    // デストロイエリアのレイヤー名
+    private string LAYER_DESTROY_AREA_NAME = "DestroyArea";
+    // ダメージのアニメーター名
+    private string ANIMATOR_DAMAGE_NAME = "Damage";
+    #endregion
 
+    /// <summary>
+    /// Start
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Start()
     {
-        // ローカル座標のY軸のマイナス方向に移動する
+        // ローカル座標のX軸のマイナス方向に移動する
         Move(transform.right * -1);
-
-        if (canShot == false) {
-            yield break;
-        }
-
         while(true) {
             // 子要素を全て取得する
             for (int i = 0; i < transform.childCount; i++) {
                 Transform shotPosition = transform.GetChild(i);
-
                 // ShotPositionの位置/角度で弾を撃つ
                 Shot(shotPosition);
             }
-            yield return new WaitForSeconds(shotDelay);
+            // 次の弾発出までのディレイ
+            yield return GetWaitShotDelay();
         }
     }
 
@@ -48,24 +55,27 @@ public class Enemy1 : Spaceship
     {
         // レイヤー名を取得
         string layerName = LayerMask.LayerToName(c.gameObject.layer);
-
+        // デストロイエリアと接触した場合は画面内に入ったフラグを立てる
+        if (layerName == LAYER_DESTROY_AREA_NAME) {
+            inDisplay = true;
+        }
         // レイヤー名がBullet(Player)以外の時は何も行わない
-        if (layerName != "Bullet(Player)")
-        {
+        if (layerName != LAYER_PLAYER_BULLET_NAME) {
             return;
         }
-
-        // Bulletコンポーネントを取得
-        Bullet bullet = c.GetComponent<Bullet>();
-
-        // ヒットポイントを減らす
-        hp = hp - bullet.power;
-
         // 弾の削除
         Destroy(c.gameObject);
+        BeShot(c.GetComponent<Bullet>().power);
+    }
 
-        if (hp <= 0) 
-        {
+    /// <summary>
+    /// 被弾
+    /// </summary>
+    protected override void BeShot(int damage = 0)
+    {
+        // ヒットポイントを減らす
+        hp -= damage;
+        if (hp <= 0) {
             // スコアコンポーネントを取得してポイントを追加
             FindObjectOfType<Score>().AddPoint(point);
             // 爆発する
@@ -73,7 +83,7 @@ public class Enemy1 : Spaceship
             // プレイヤーの削除
             Destroy(gameObject);
         } else {
-            GetAnimator().SetTrigger("Damage");
+            GetAnimator().SetTrigger(ANIMATOR_DAMAGE_NAME);
         }
     }
 }

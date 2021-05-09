@@ -5,16 +5,26 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    // スコアを表示するGUIText
-    public Text scoreText;
+    #region インスペクターで設定
+    [Header("スコアを表示するText")] public Text scoreText;
+    #endregion
+
+    #region プライベート変数
     // スコア
-    private int score;
+    private int score = 0;
+    #endregion
     
+    /// <summary>
+    /// Start
+    /// </summary>
     private void Start() 
     {
         Initialize();
     }
     
+    /// <summary>
+    /// Update
+    /// </summary>
     private void Update() 
     {
         // スコアを表示する

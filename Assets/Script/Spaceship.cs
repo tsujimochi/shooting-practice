@@ -5,18 +5,20 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
 public abstract class Spaceship : MonoBehaviour
 {
-    // 移動スピード
-    public float speed;
-    // 弾を撃つ間隔
-    public float shotDelay;
-    // 弾のPrefab
-    public GameObject bullet;
-    // 爆発のPrefab
-    public GameObject explosion;
-    // 弾を撃つかどうか
-    public bool canShot;
+    #region インスペクターで設定
+    [Header("移動スピード")] public float speed;
+    [Header("弾を撃つ間隔")] public float shotDelay;
+    [Header("弾を撃つかどうか")] public bool canShot;
+    [Header("弾のPrefab")] public GameObject bullet;
+    [Header("爆発のPrefab")] public GameObject explosion;
+    #endregion
+    
+    #region プライベート変数
     // アニメーターコンポーネント
     private Animator animator;
+    // 画面内にいる
+    protected bool inDisplay;
+    #endregion
 
     /// <summary>
     /// 爆発の作成
@@ -30,9 +32,27 @@ public abstract class Spaceship : MonoBehaviour
     /// 弾の作成
     /// </summary>
     /// <param name="origin"></param>
-    public void Shot (Transform origin)
+    /// <param name="outSound">SEを流す場合はtrue</param>
+    /// <returns>待ち時間</returns>
+    public void Shot (Transform origin, bool outSound = false)
     {
+        if (canShot == false || inDisplay == false) {
+            return;
+        }
         Instantiate (bullet, origin.position, origin.rotation);
+        if (outSound) {
+            // ショット音を鳴らす
+            GetComponent<AudioSource>().Play();
+        }
+    }
+
+    /// <summary>
+    /// 弾撃ち後の待ち時間を取得する
+    /// </summary>
+    /// <returns></returns>
+    public WaitForSeconds GetWaitShotDelay()
+    {
+        return new WaitForSeconds(shotDelay);
     }
 
     /// <summary>
@@ -48,5 +68,14 @@ public abstract class Spaceship : MonoBehaviour
         return animator;
     }
 
+    /// <summary>
+    /// 移動
+    /// </summary>
+    /// <param name="direction"></param>
     protected abstract void Move(Vector2 direction);
+
+    /// <summary>
+    /// 被弾
+    /// </summary>
+    protected abstract void BeShot(int damage = 0);
 }

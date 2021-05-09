@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: point
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 975725364, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
       propertyPath: canShot
       value: 0
@@ -150,6 +154,14 @@ PrefabInstance:
     - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
       propertyPath: point
       value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: shotDelay
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 975725364, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
       propertyPath: canShot
@@ -242,6 +254,14 @@ PrefabInstance:
       propertyPath: point
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: shotDelay
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 975725364, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
       propertyPath: canShot
       value: 0
@@ -332,6 +352,14 @@ PrefabInstance:
     - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
       propertyPath: point
       value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: shotDelay
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 975725364, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
       propertyPath: canShot
@@ -424,6 +452,10 @@ PrefabInstance:
       propertyPath: point
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 975725364, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
       propertyPath: canShot
       value: 0
@@ -514,6 +546,14 @@ PrefabInstance:
     - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
       propertyPath: point
       value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: shotDelay
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 975725364, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
       propertyPath: canShot
@@ -606,6 +646,14 @@ PrefabInstance:
       propertyPath: point
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: shotDelay
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 288438940807552468, guid: c23bd6ef7e54a3f4394dab3a627cdd2c,
         type: 3}
       propertyPath: m_Name
@@ -693,6 +741,14 @@ PrefabInstance:
       propertyPath: point
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: shotDelay
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 288438940807552468, guid: c23bd6ef7e54a3f4394dab3a627cdd2c,
         type: 3}
       propertyPath: m_Name
@@ -779,6 +835,14 @@ PrefabInstance:
     - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
       propertyPath: point
       value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: shotDelay
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 975725364, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
       propertyPath: canShot
@@ -871,6 +935,14 @@ PrefabInstance:
       propertyPath: point
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: shotDelay
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 975725364, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
       propertyPath: canShot
       value: 0
@@ -961,6 +1033,14 @@ PrefabInstance:
     - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
       propertyPath: point
       value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: shotDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: speed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 288438940807552468, guid: c23bd6ef7e54a3f4394dab3a627cdd2c,
         type: 3}
