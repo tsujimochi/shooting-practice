@@ -7,6 +7,9 @@ public class Enemy1 : Spaceship
     // ヒットポイント
     public int hp = 1;
 
+    // スコアのポイント
+    public int point = 100;
+
     IEnumerator Start()
     {
         // ローカル座標のY軸のマイナス方向に移動する
@@ -63,6 +66,8 @@ public class Enemy1 : Spaceship
 
         if (hp <= 0) 
         {
+            // スコアコンポーネントを取得してポイントを追加
+            FindObjectOfType<Score>().AddPoint(point);
             // 爆発する
             Explosion();
             // プレイヤーの削除
