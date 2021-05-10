@@ -9,7 +9,12 @@ public class Player : Spaceship
     private string LAYER_ENEMY_NAME = "Enemy";
     // 敵の弾レイヤー名
     private string LAYER_ENEMY_BULLET_NAME = "Bullet(Enemy)";
+    // アイテムのレイヤー名
+    private string LAYER_ITEM_NAME = "Item";
+
     #endregion
+
+    private PlayerShotType playerShotType;
 
     /// <summary>
     /// Start
@@ -17,12 +22,22 @@ public class Player : Spaceship
     /// <returns></returns>
     IEnumerator Start ()
     {
+        playerShotType = new PlayerShotType();
         inDisplay = true;
         while (true) {
+            Shot shot = playerShotType.GetShotType(shotLevel);
+            foreach (BulletType bulletType in shot.GetBullets()) {
+                Vector2 shotPosition = transform.position;
+                shotPosition.x += bulletType.GetX();
+                shotPosition.y += bulletType.GetY();
+                // ShotPositionの位置/角度で弾を撃つ
+                Instantiate (bullet, shotPosition, Quaternion.Euler(0, 0, bulletType.GetZ()));
+            } 
+            GetComponent<AudioSource>().Play();
             // 弾をプレイヤーと同じ位置/角度で作成
-            Shot(transform, true);
+            // Shot(transform, true);
             // 次の弾発出までのディレイ
-            yield return GetWaitShotDelay();
+            yield return new WaitForSeconds(playerShotType.GetShotDelay(shotLevel));
         }
     }
 
@@ -81,6 +96,8 @@ public class Player : Spaceship
             BeShot();
         } else if (layerName == LAYER_ENEMY_NAME) {
             BeShot();
+        } else if (layerName == LAYER_ITEM_NAME) {
+            c.gameObject.GetComponent<Item>().UseItem(this);
         }
     }
 

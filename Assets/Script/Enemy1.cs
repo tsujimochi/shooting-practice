@@ -7,6 +7,8 @@ public class Enemy1 : Spaceship
     #region // インスペクターで設定
     [Header("ヒットポイント")] public int hp = 1;
     [Header("スコアのポイント")] public int point = 100;
+    [Header("アイテムドロップ")] public bool isItemDrop = false;
+    [Header("ドロップするアイテム")] public GameObject dropItem;
     #endregion
 
     #region 定数
@@ -34,7 +36,7 @@ public class Enemy1 : Spaceship
                 Shot(shotPosition);
             }
             // 次の弾発出までのディレイ
-            yield return GetWaitShotDelay();
+            yield return new WaitForSeconds(shotDelay);
         }
     }
 
@@ -80,7 +82,10 @@ public class Enemy1 : Spaceship
             FindObjectOfType<Score>().AddPoint(point);
             // 爆発する
             Explosion();
-            // プレイヤーの削除
+            if (isItemDrop) {
+                Instantiate(dropItem, transform.position, dropItem.transform.rotation);
+            }
+            // エネミーの削除
             Destroy(gameObject);
         } else {
             GetAnimator().SetTrigger(ANIMATOR_DAMAGE_NAME);

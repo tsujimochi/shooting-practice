@@ -534,6 +534,15 @@ PrefabInstance:
       propertyPath: shotDelay
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: isItemDrop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 975725363, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
+      propertyPath: dropItem
+      value: 
+      objectReference: {fileID: 6804422707005411495, guid: aea94044257f13a45b604e05a2d29b50,
+        type: 3}
     - target: {fileID: 1369174706, guid: c23bd6ef7e54a3f4394dab3a627cdd2c, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0

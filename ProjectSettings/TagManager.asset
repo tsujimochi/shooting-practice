@@ -19,7 +19,7 @@ TagManager:
   - Bullet(Player)
   - Bullet(Enemy)
   - DestroyArea
-  - 
+  - Item
   - 
   - 
   - 

@@ -212,12 +212,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.5
+  maxSpeed: 10
+  shotLevel: 0
   shotDelay: 1
+  canShot: 0
   bullet: {fileID: 739515367545073748, guid: 94ed89981e7c8c1478260cad82354e21, type: 3}
   explosion: {fileID: 906346567846800075, guid: e5cfe0a70c626694daa905e77027cb81,
     type: 3}
-  canShot: 0
   hp: 1
+  point: 100
+  isItemDrop: 0
+  dropItem: {fileID: 0}
 --- !u!58 &9125920306347597819
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -120,11 +120,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  maxSpeed: 10
+  shotLevel: 0
   shotDelay: 0.5
+  canShot: 1
   bullet: {fileID: 555513147944695815, guid: 87891e4e30a75af4b8d0c7cd1123a2fe, type: 3}
   explosion: {fileID: 906346567846800075, guid: e5cfe0a70c626694daa905e77027cb81,
     type: 3}
-  canShot: 1
 --- !u!61 &917759338297406262
 BoxCollider2D:
   m_ObjectHideFlags: 0
