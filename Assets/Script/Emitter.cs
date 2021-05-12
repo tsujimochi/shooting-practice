@@ -39,16 +39,31 @@ public class Emitter : MonoBehaviour
             // WaveをEmmiterの子要素にする
             wave.transform.parent = transform;
             // Waveの子要素のEnemyが全て削除されるまで待機する
-            while(wave.transform.childCount != 0) {
+            while(true) {
+                if (wave.transform.childCount <= 0) {
+                    // Waveの削除
+                    Destroy(wave);
+                    break;
+                } else if (manager.IsPlaying() == false) {
+                    break;
+                }
+
                 yield return new WaitForEndOfFrame();
             }
-            // Waveの削除
-            Destroy(wave);
+            
 
             // 格納されているWaveを全て実行したらcurrentWaveを0にする (最初から -> ループ)
             if (waves.Length <= ++currentWave) {
                 currentWave = 0;
             }
         }
+    }
+
+    public void AllReset()
+    {
+        foreach ( Transform child in transform ){
+            GameObject.Destroy(child.gameObject);
+        }
+        currentWave = 0;
     }
 }

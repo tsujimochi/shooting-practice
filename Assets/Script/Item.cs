@@ -4,6 +4,11 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
+    public void Move(Vector2 direction,  float speed = 0)
+    {
+        GetComponent<Rigidbody2D>().velocity = direction * speed * -1;
+    }
+
     /// <summary>
     /// アイテムを使う
     /// </summary>

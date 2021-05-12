@@ -34,7 +34,7 @@ public class Score : MonoBehaviour
     /// <summary>
     /// ゲーム開始前の状態に戻す
     /// </summary>
-    private void Initialize()
+    public void Initialize()
     {
         // スコアを0に戻す
         score = 0;

@@ -83,7 +83,9 @@ public class Enemy1 : Spaceship
             // 爆発する
             Explosion();
             if (isItemDrop) {
-                Instantiate(dropItem, transform.position, dropItem.transform.rotation);
+                GameObject item = (GameObject)Instantiate(dropItem, transform.position, dropItem.transform.rotation);
+                item.transform.parent = transform.parent.parent;
+                item.GetComponent<Item>().Move(transform.right, speed);
             }
             // エネミーの削除
             Destroy(gameObject);

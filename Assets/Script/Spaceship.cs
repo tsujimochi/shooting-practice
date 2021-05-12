@@ -41,7 +41,9 @@ public abstract class Spaceship : MonoBehaviour
         if (canShot == false || inDisplay == false) {
             return;
         }
-        Instantiate (bullet, origin.position, origin.rotation);
+        GameObject bulletObject = (GameObject)Instantiate (bullet, origin.position, origin.rotation);
+        // 弾の親要素を自分と同じにする
+        bulletObject.transform.parent = transform.parent;
         if (outSound) {
             // ショット音を鳴らす
             GetComponent<AudioSource>().Play();
