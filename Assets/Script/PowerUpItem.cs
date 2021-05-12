@@ -15,7 +15,9 @@ public class PowerUpItem : Item
     /// <param name="player"></param>
     public override void UseItem(Player player)
     {
+        GameObject soundObject = (GameObject)Instantiate(se, transform.position, transform.rotation);
         player.shotLevel += power;
+        Destroy(soundObject, 3);
         Destroy(gameObject);
     }
 }
