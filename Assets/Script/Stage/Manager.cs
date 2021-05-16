@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
     #region 定数
     private enum MessageId {
+        Title,
         Start,
         GameOver
     };
@@ -39,31 +41,29 @@ public class Manager : MonoBehaviour
         emitter = FindObjectOfType<Emitter>();
         // Scoreゲームオブジェクトを検索し取得する
         score = FindObjectOfType<Score>();
-        mainMessage.text = GetMessage(MessageId.Start);
-    }
 
-    /// <summary>
-    /// Update
-    /// </summary>
-    void Update() 
-    {
-        // ゲーム中ではなく、xキーが押されたらtrueを返す
-        if (IsPlaying() == false && Input.GetKeyDown(KeyCode.X)) {
-            GameStart();
-        }
+        // ゲーム開始
+        StartCoroutine(GameStart());
     }
 
     /// <summary>
     /// ゲーム開始
     /// </summary>
-    void GameStart()
+    private IEnumerator GameStart()
     {
         // ゲームスタート時にタイトルを非表示にしてプレイヤーを作成する
         emitter.AllReset();
         score.Initialize();
+
+        // 一定時間ステージ名を表示した後、ゲームを開始する
+        mainMessage.text = GetMessage(MessageId.Title);
+        yield return new WaitForSeconds(2);
+        mainMessage.text = GetMessage(MessageId.Start);
         isPlaying = true;
-        message.SetActive(false);
         Instantiate(player, player.transform.position, player.transform.rotation);
+
+        yield return new WaitForSeconds(2);
+        message.SetActive(false);        
     }
 
     /// <summary>
@@ -90,8 +90,10 @@ public class Manager : MonoBehaviour
     private string GetMessage(MessageId messageId)
     {
         switch(messageId) {
+            case MessageId.Title:
+                return "Stage" + stageNumber;
             case MessageId.Start:
-                return "Stage" + stageNumber + " Start";
+                return "Start";
             case MessageId.GameOver:
                 return "Game Over";
             default:
