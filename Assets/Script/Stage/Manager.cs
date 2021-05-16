@@ -13,13 +13,16 @@ public class Manager : MonoBehaviour
     #endregion
 
     #region インスペクターで設定
-    [Header("Player Prefab")] public GameObject player;
+    [Header("Player Prefab")] public GameObject playerPrefab;
+    [Header("BGM Object")] public GameObject bgm;
     [Header("メインメッセージ用のText")] public Text mainMessage;
     #endregion
 
     #region プライベート変数
     // タイトル
     private GameObject message;
+    // プレイヤー
+    private GameObject player;
     // 敵の管理
     private Emitter emitter;
     // スコア
@@ -41,9 +44,17 @@ public class Manager : MonoBehaviour
         emitter = FindObjectOfType<Emitter>();
         // Scoreゲームオブジェクトを検索し取得する
         score = FindObjectOfType<Score>();
-
         // ゲーム開始
         StartCoroutine(GameStart());
+    }
+
+    private void Update()
+    {
+        // プレイ中にプレイヤーが画面内からいなくなったらゲームオーバー
+        if (isPlaying && player == null)
+        {
+            StartCoroutine(GameOver());
+        }
     }
 
     /// <summary>
@@ -51,6 +62,8 @@ public class Manager : MonoBehaviour
     /// </summary>
     private IEnumerator GameStart()
     {
+        // BGMスタート
+        bgm.GetComponent<AudioSource>().Play();
         // ゲームスタート時にタイトルを非表示にしてプレイヤーを作成する
         emitter.AllReset();
         score.Initialize();
@@ -59,8 +72,8 @@ public class Manager : MonoBehaviour
         mainMessage.text = GetMessage(MessageId.Title);
         yield return new WaitForSeconds(2);
         mainMessage.text = GetMessage(MessageId.Start);
+        player = (GameObject)Instantiate(playerPrefab, playerPrefab.transform.position, playerPrefab.transform.rotation);
         isPlaying = true;
-        Instantiate(player, player.transform.position, player.transform.rotation);
 
         yield return new WaitForSeconds(2);
         message.SetActive(false);        
@@ -69,12 +82,15 @@ public class Manager : MonoBehaviour
     /// <summary>
     /// ゲームオーバー
     /// </summary>
-    public void GameOver()
+    private IEnumerator GameOver()
     {
+        // BGM停止
+        bgm.GetComponent<AudioSource>().Stop();
         // ゲームオーバー時に、タイトルを表示する
         isPlaying = false;
         mainMessage.text = GetMessage(MessageId.GameOver);
         message.SetActive(true);
+        yield return null;
     }
 
     /// <summary>

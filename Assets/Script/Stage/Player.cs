@@ -124,8 +124,6 @@ public class Player : Spaceship
     /// </summary>
     protected override void BeShot(int damage = 0)
     {
-        // Managerコンポーネントをシーン内から探して取得し、GameOverメソッドを呼び出す
-        FindObjectOfType<Manager>().GameOver();
         // 爆発する
         Explosion();
         // プレイヤーの削除
