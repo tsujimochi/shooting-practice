@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
 {
@@ -88,9 +89,8 @@ public class Manager : MonoBehaviour
         bgm.GetComponent<AudioSource>().Stop();
         // ゲームオーバー時に、タイトルを表示する
         isPlaying = false;
-        mainMessage.text = GetMessage(MessageId.GameOver);
-        message.SetActive(true);
-        yield return null;
+        yield return new WaitForSeconds(4);
+        SceneManager.LoadScene("GameOver");
     }
 
     /// <summary>
