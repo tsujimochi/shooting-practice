@@ -11,10 +11,18 @@ public class Player : Spaceship
     private string LAYER_ENEMY_BULLET_NAME = "Bullet(Enemy)";
     // アイテムのレイヤー名
     private string LAYER_ITEM_NAME = "Item";
-
+    // 最初の操作不可時間（秒）
+    private float NOT_CONTROL_SEC = 1;
+    // キャラ登場時の初速
+    private float START_SPEED = 1;
     #endregion
 
+    #region プライベート変数
+    // プレイヤーの弾タイプ
     private PlayerShotType playerShotType;
+    // プレイヤー操作可能判定
+    private bool canControl = false;
+    #endregion
 
     /// <summary>
     /// Start
@@ -22,6 +30,12 @@ public class Player : Spaceship
     /// <returns></returns>
     IEnumerator Start ()
     {
+        // 一定時間動く
+        GetComponent<Rigidbody2D>().velocity = transform.right.normalized * START_SPEED;
+        yield return new WaitForSeconds(NOT_CONTROL_SEC);
+        canControl = true;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
         playerShotType = new PlayerShotType();
         inDisplay = true;
         while (true) {
@@ -46,13 +60,17 @@ public class Player : Spaceship
     /// </summary>
     void Update ()
     {
-		// 右・左
-		float x = Input.GetAxisRaw ("Horizontal");
-		// 上・下
-		float y = Input.GetAxisRaw ("Vertical");
-		// 移動する向きを求める
-		Vector2 direction = new Vector2 (x, y).normalized;
-        Move(direction);
+        if (canControl)
+        {
+            // 右・左
+            float x = Input.GetAxisRaw("Horizontal");
+            // 上・下
+            float y = Input.GetAxisRaw("Vertical");
+            // 移動する向きを求める
+            Vector2 direction = new Vector2(x, y).normalized;
+            Move(direction);
+        }
+
     }
 
     /// <summary>

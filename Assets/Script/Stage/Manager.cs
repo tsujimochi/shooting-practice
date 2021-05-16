@@ -31,9 +31,6 @@ public class Manager : MonoBehaviour
     private static int stageNumber = 1;
     #endregion
 
-    /// <summary>
-    /// Start
-    /// </summary>
     void Start() 
     {
         // Titleゲームオブジェクトを検索し取得する
