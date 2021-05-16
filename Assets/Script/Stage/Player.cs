@@ -6,15 +6,15 @@ public class Player : Spaceship
 {
     #region 定数
     // 敵のレイヤー名
-    private string LAYER_ENEMY_NAME = "Enemy";
+    private const string LAYER_ENEMY_NAME = "Enemy";
     // 敵の弾レイヤー名
-    private string LAYER_ENEMY_BULLET_NAME = "Bullet(Enemy)";
+    private const string LAYER_ENEMY_BULLET_NAME = "Bullet(Enemy)";
     // アイテムのレイヤー名
-    private string LAYER_ITEM_NAME = "Item";
+    private const string LAYER_ITEM_NAME = "Item";
     // 最初の操作不可時間（秒）
-    private float NOT_CONTROL_SEC = 1;
+    private const float NOT_CONTROL_SEC = 1;
     // キャラ登場時の初速
-    private float START_SPEED = 1;
+    private const float START_SPEED = 1;
     #endregion
 
     #region プライベート変数
@@ -37,22 +37,40 @@ public class Player : Spaceship
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
         playerShotType = new PlayerShotType();
-        inDisplay = true;
         while (true) {
-            Shot shot = playerShotType.GetShotType(shotLevel);
-            foreach (BulletType bulletType in shot.GetBullets()) {
-                Vector2 shotPosition = transform.position;
-                shotPosition.x += bulletType.GetX();
-                shotPosition.y += bulletType.GetY();
-                // ShotPositionの位置/角度で弾を撃つ
-                Instantiate (bullet, shotPosition, Quaternion.Euler(0, 0, bulletType.GetZ()));
-            } 
-            GetComponent<AudioSource>().Play();
-            // 弾をプレイヤーと同じ位置/角度で作成
-            // Shot(transform, true);
+            if (canControl)
+            {
+                Shot shot = playerShotType.GetShotType(shotLevel);
+                foreach (BulletType bulletType in shot.GetBullets())
+                {
+                    Vector2 shotPosition = transform.position;
+                    shotPosition.x += bulletType.GetX();
+                    shotPosition.y += bulletType.GetY();
+                    // ShotPositionの位置/角度で弾を撃つ
+                    Instantiate(bullet, shotPosition, Quaternion.Euler(0, 0, bulletType.GetZ()));
+                }
+                GetComponent<AudioSource>().Play();
+            }
             // 次の弾発出までのディレイ
             yield return new WaitForSeconds(playerShotType.GetShotDelay(shotLevel));
         }
+    }
+
+    /// <summary>
+    /// 操作可否をセットする
+    /// </summary>
+    /// <param name="canControl"></param>
+    public void SetCanControl(bool canControl)
+    {
+        this.canControl = canControl;
+    }
+
+    /// <summary>
+    /// 画面外に移動する
+    /// </summary>
+    public void MoveOffScreen(float speed = START_SPEED)
+    {
+        GetComponent<Rigidbody2D>().velocity = transform.right.normalized * speed;
     }
 
     /// <summary>
@@ -70,7 +88,6 @@ public class Player : Spaceship
             Vector2 direction = new Vector2(x, y).normalized;
             Move(direction);
         }
-
     }
 
     /// <summary>
@@ -105,6 +122,10 @@ public class Player : Spaceship
     /// <param name="c"></param>
     void OnTriggerEnter2D(Collider2D c)
     {
+        if (canControl == false)
+        {
+            return;
+        }
         // レイヤー名を取得
         string layerName = LayerMask.LayerToName(c.gameObject.layer);
         // レイヤー名が敵または敵の弾の場合は被弾

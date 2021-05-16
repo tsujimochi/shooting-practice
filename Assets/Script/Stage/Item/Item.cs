@@ -7,10 +7,14 @@ public abstract class Item : MonoBehaviour
     #region インスペクターで設定
     public GameObject se;
     #endregion
-    
-    public void Move(Vector2 direction,  float speed = 0)
+
+    #region 定数
+    private const float DEFAULT_SPEED = 1;
+    #endregion
+
+    public void Move(float speed = DEFAULT_SPEED)
     {
-        GetComponent<Rigidbody2D>().velocity = direction * speed * -1;
+        GetComponent<Rigidbody2D>().velocity = transform.right * speed * -1;
     }
 
     /// <summary>

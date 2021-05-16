@@ -8,8 +8,7 @@ public class Manager : MonoBehaviour
     #region 定数
     private enum MessageId {
         Title,
-        Start,
-        GameOver
+        Start
     };
     #endregion
 
@@ -35,10 +34,16 @@ public class Manager : MonoBehaviour
     private static bool isPlaying = false;
     // ステージ番号
     private static int stageNumber = 1;
+    // ウェーブ番号
+    private static int currentWave = 0;
+    // 全ウェーブ数
+    private static int allWavesCount = 0;
     #endregion
 
     void Start() 
     {
+        // wave初期化
+        currentWave = 0;
         // Titleゲームオブジェクトを検索し取得する
         message = GameObject.Find("Message");
         // Emitterゲームオブジェクトを検索し取得する
@@ -52,9 +57,16 @@ public class Manager : MonoBehaviour
     private void Update()
     {
         // プレイ中にプレイヤーが画面内からいなくなったらゲームオーバー
-        if (isPlaying && player == null)
+        if (isPlaying)
         {
-            StartCoroutine(GameOver());
+            if (player == null)
+            {
+                StartCoroutine(GameOver());
+            } 
+            else if (IsStageClear())
+            {
+                StartCoroutine(StageClear());
+            }
         }
     }
 
@@ -66,7 +78,6 @@ public class Manager : MonoBehaviour
         // BGMスタート
         bgm.GetComponent<AudioSource>().Play();
         // ゲームスタート時にタイトルを非表示にしてプレイヤーを作成する
-        emitter.AllReset();
         score.Initialize();
 
         // 一定時間ステージ名を表示した後、ゲームを開始する
@@ -85,12 +96,30 @@ public class Manager : MonoBehaviour
     /// </summary>
     private IEnumerator GameOver()
     {
-        // BGM停止
-        bgm.GetComponent<AudioSource>().Stop();
-        // ゲームオーバー時に、タイトルを表示する
         isPlaying = false;
+        bgm.GetComponent<AudioSource>().Stop();
         yield return new WaitForSeconds(4);
         SceneManager.LoadScene("GameOver");
+    }
+
+    private IEnumerator StageClear()
+    {
+        // 3秒待つ
+        yield return new WaitForSeconds(3);
+        // フェードアウト
+        AudioSource audio = bgm.GetComponent<AudioSource>();
+        for (int volume = 100; volume > 0; volume--)
+        {
+            audio.volume = (float)(volume) / 100;
+            yield return new WaitForEndOfFrame();
+        }
+        isPlaying = false;
+        Player playerScript = player.GetComponent<Player>();
+        playerScript.SetCanControl(false);
+        yield return new WaitForSeconds(2);
+        playerScript.MoveOffScreen(10);
+        yield return new WaitForSeconds(4);
+        SceneManager.LoadScene("StageClear");
     }
 
     /// <summary>
@@ -103,6 +132,42 @@ public class Manager : MonoBehaviour
         return isPlaying;
     }
 
+    /// <summary>
+    /// Wave数をセットする
+    /// </summary>
+    /// <param name="count"></param>
+    public void SetWavesCount(int count)
+    {
+        allWavesCount = count;
+    }
+
+    /// <summary>
+    /// 現在のWaveを取得する
+    /// </summary>
+    /// <returns></returns>
+    public int GetWave()
+    {
+        return currentWave;
+    }
+
+    /// <summary>
+    /// Waveを指定分進ませる
+    /// </summary>
+    /// <param name="progress">進ませる値。未指定時は1</param>
+    public void AddWave(int progress = 1)
+    {
+        currentWave += progress;
+    }
+
+    /// <summary>
+    /// ステージクリアしたか判定する
+    /// </summary>
+    /// <returns></returns>
+    public bool IsStageClear()
+    {
+        return currentWave >= allWavesCount;
+    }
+
     private string GetMessage(MessageId messageId)
     {
         switch(messageId) {
@@ -110,8 +175,6 @@ public class Manager : MonoBehaviour
                 return "Stage" + stageNumber;
             case MessageId.Start:
                 return "Start";
-            case MessageId.GameOver:
-                return "Game Over";
             default:
                 return "no message";
         }
