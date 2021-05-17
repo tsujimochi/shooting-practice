@@ -22,6 +22,8 @@ public class Player : Spaceship
     private PlayerShotType playerShotType;
     // プレイヤー操作可能判定
     private bool canControl = false;
+    // 最大ショットレベル
+    private int maxShotLevel = 0;
     #endregion
 
     /// <summary>
@@ -30,13 +32,15 @@ public class Player : Spaceship
     /// <returns></returns>
     IEnumerator Start ()
     {
+        playerShotType = new PlayerShotType();
+        maxShotLevel = playerShotType.GetMaxShotLevel();
+
         // 一定時間動く
         GetComponent<Rigidbody2D>().velocity = transform.right.normalized * START_SPEED;
         yield return new WaitForSeconds(NOT_CONTROL_SEC);
         canControl = true;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
-        playerShotType = new PlayerShotType();
         while (true) {
             if (canControl)
             {
@@ -88,6 +92,10 @@ public class Player : Spaceship
             Vector2 direction = new Vector2(x, y).normalized;
             Move(direction);
         }
+    }
+    public int GetMaxShotLevel()
+    {
+        return maxShotLevel;
     }
 
     /// <summary>

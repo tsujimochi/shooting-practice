@@ -16,6 +16,8 @@ public class Manager : MonoBehaviour
     [Header("Player Prefab")] public GameObject playerPrefab;
     [Header("BGM Object")] public GameObject bgm;
     [Header("メインメッセージ用のText")] public Text mainMessage;
+    [Header("パワーステータス用のText")] public Text powerStatus;
+    [Header("スピードステータス用のText")] public Text speedStatus;
     #endregion
 
     #region プライベート変数
@@ -62,11 +64,15 @@ public class Manager : MonoBehaviour
             if (player == null)
             {
                 StartCoroutine(GameOver());
-            } 
-            else if (IsStageClear())
+            } else
+            {
+                UpdateDisplayStatus();
+            }
+            if (IsStageClear())
             {
                 StartCoroutine(StageClear());
             }
+            
         }
     }
 
@@ -166,6 +172,19 @@ public class Manager : MonoBehaviour
     public bool IsStageClear()
     {
         return currentWave >= allWavesCount;
+    }
+
+    /// <summary>
+    /// 画面に表示されている状態を更新する
+    /// </summary>
+    private void UpdateDisplayStatus()
+    {
+        Player playerScript = player.GetComponent<Player>();
+        powerStatus.text = "Power " + (playerScript.shotLevel + 1) + " / " + playerScript.GetMaxShotLevel();
+
+        int nowSpeed = (int)(Mathf.Floor(playerScript.speed / 2) + 1);
+        int maxSpeed = (int)(Mathf.Floor(playerScript.maxSpeed / 2) + 1);
+        speedStatus.text = "Speed " + nowSpeed + " / " + maxSpeed;
     }
 
     private string GetMessage(MessageId messageId)

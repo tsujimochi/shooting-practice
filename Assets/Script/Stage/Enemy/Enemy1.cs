@@ -55,6 +55,10 @@ public class Enemy1 : Spaceship
     /// <param name="c"></param>
     void OnTriggerEnter2D(Collider2D c)
     {
+        if (hp <= 0)
+        {
+            return;
+        }
         // レイヤー名を取得
         string layerName = LayerMask.LayerToName(c.gameObject.layer);
         // デストロイエリアと接触した場合は画面内に入ったフラグを立てる

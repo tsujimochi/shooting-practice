@@ -120,8 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7abe6f817af6ed4db25e045f7ba4cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  maxSpeed: 10
+  speed: 1
+  maxSpeed: 9
   shotLevel: 0
   shotDelay: 0.5
   canShot: 1

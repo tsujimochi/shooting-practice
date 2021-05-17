@@ -39,17 +39,13 @@ public class PlayerShotType
         shotTypes[4].AddBullet(new BulletType(0.1f, 0, -10, 1));
         shotTypes[4].AddBullet(new BulletType(0.1f, 0, -20, 1));
         shotDelays.Add(0.3f);
-        // レベル5
-        shotTypes.Add(new Shot());
-        shotTypes[5].AddBullet(new BulletType(0.1f, 0, 20, 1));
-        shotTypes[5].AddBullet(new BulletType(0.1f, 0, 10, 1));
-        shotTypes[5].AddBullet(new BulletType(0.1f, 0.1f, 0, 1));
-        shotTypes[5].AddBullet(new BulletType(0.1f, -0.1f, 0, 1));
-        shotTypes[5].AddBullet(new BulletType(0.1f, 0, -10, 1));
-        shotTypes[5].AddBullet(new BulletType(0.1f, 0, -20, 1));
-        shotDelays.Add(0.1f);
     }
 
+    /// <summary>
+    /// 指定したショットレベルのタイプを取得する
+    /// </summary>
+    /// <param name="level"></param>
+    /// <returns></returns>
     public Shot GetShotType(int level)
     {
         if (level < 0) {
@@ -61,6 +57,12 @@ public class PlayerShotType
         return shotTypes[level];
     }
 
+
+    /// <summary>
+    /// 指定したショットレベルのディレイを取得する
+    /// </summary>
+    /// <param name="level"></param>
+    /// <returns></returns>
     public float GetShotDelay(int level)
     {
         if (level < 0) {
@@ -70,5 +72,14 @@ public class PlayerShotType
             return shotDelays[shotDelays.Count - 1];
         }
         return shotDelays[level]; 
+    }
+
+    /// <summary>
+    /// 最大ショットレベルを取得する
+    /// </summary>
+    /// <returns></returns>
+    public int GetMaxShotLevel()
+    {
+        return shotTypes.Count;
     }
 }

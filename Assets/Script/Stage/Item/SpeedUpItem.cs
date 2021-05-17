@@ -5,7 +5,10 @@ using UnityEngine;
 public class SpeedUpItem : Item
 {
     #region プライベート変数
+    // 上昇値
     private int speed = 2;
+    // 使用したか
+    private bool isUsed = false;
     #endregion
 
     /// <summary>
@@ -14,6 +17,11 @@ public class SpeedUpItem : Item
     /// <param name="player"></param>
     public override void UseItem(Player player)
     {
+        if (isUsed)
+        {
+            return;
+        }
+        isUsed = true;
         GameObject soundObject = (GameObject)Instantiate(se, transform.position, transform.rotation);
         player.speed += speed;
         if (player.speed > player.maxSpeed) {
