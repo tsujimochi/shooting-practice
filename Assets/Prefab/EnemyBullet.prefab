@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  power: 1
 --- !u!61 &3485367921562691609
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -81,7 +82,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.006}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -92,7 +93,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.45, y: 0.1}
+  m_Size: {x: 0.32, y: 0.17}
   m_EdgeRadius: 0
 --- !u!1001 &739515369082948077
 PrefabInstance:
@@ -109,6 +110,17 @@ PrefabInstance:
     - target: {fileID: 4837345820974666975, guid: 846a4d31a2cab31419b9a4d7026cb950,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7326364897151846088, guid: 846a4d31a2cab31419b9a4d7026cb950,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 08104dcb9c629c442b58c169e9396e5c,
+        type: 3}
+    - target: {fileID: 7454932784748982683, guid: 846a4d31a2cab31419b9a4d7026cb950,
+        type: 3}
+      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7454932784748982683, guid: 846a4d31a2cab31419b9a4d7026cb950,
@@ -128,6 +140,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7454932784748982683, guid: 846a4d31a2cab31419b9a4d7026cb950,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454932784748982683, guid: 846a4d31a2cab31419b9a4d7026cb950,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -139,16 +156,6 @@ PrefabInstance:
     - target: {fileID: 7454932784748982683, guid: 846a4d31a2cab31419b9a4d7026cb950,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7454932784748982683, guid: 846a4d31a2cab31419b9a4d7026cb950,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7454932784748982683, guid: 846a4d31a2cab31419b9a4d7026cb950,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7454932784748982683, guid: 846a4d31a2cab31419b9a4d7026cb950,
