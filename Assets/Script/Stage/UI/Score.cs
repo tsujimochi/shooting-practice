@@ -10,6 +10,8 @@ public class Score : MonoBehaviour
     #endregion
 
     #region プライベート変数
+    // Manager
+    private Manager manager;
     // スコア
     private int score = 0;
     #endregion
@@ -28,7 +30,7 @@ public class Score : MonoBehaviour
     private void Update() 
     {
         // スコアを表示する
-        scoreText.text = score.ToString();
+        scoreText.text = (score + manager.ContinueCount).ToString();
     }
 
     /// <summary>
@@ -36,6 +38,7 @@ public class Score : MonoBehaviour
     /// </summary>
     public void Initialize()
     {
+        manager = FindObjectOfType<Manager>();
         // スコアを0に戻す
         score = 0;
     }

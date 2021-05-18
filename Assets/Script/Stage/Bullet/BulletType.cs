@@ -4,37 +4,19 @@ using System.Collections.Generic;
 public class BulletType
 {
     #region プライベート変数
-    private float x;
-    private float y;
-    private float z;
-    private int power;    
+    public float X { get; }
+    public float Y { get; }
+    public float Z { get; }
+    public int Power { get; }
+    public float Scale { get; }
     #endregion
 
-    public BulletType(float x, float y, float z, int power)
+    public BulletType(float x, float y, float z, int power, float scale = 1)
     {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.power = power;
-    }
-
-    public float GetX() 
-    {
-        return x;
-    }
-
-    public float GetY()
-    {
-        return y;
-    }
-
-    public float GetZ()
-    {
-        return z;
-    }
-
-    public int GetPower()
-    {
-        return power;
+        this.X = x;
+        this.Y = y;
+        this.Z = z;
+        this.Power = power;
+        this.Scale = scale;
     }
 }

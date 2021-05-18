@@ -45,13 +45,13 @@ public class Player : Spaceship
             if (canControl)
             {
                 Shot shot = playerShotType.GetShotType(shotLevel);
-                foreach (BulletType bulletType in shot.GetBullets())
+                foreach (BulletType bulletType in shot.Bullets)
                 {
                     Vector2 shotPosition = transform.position;
-                    shotPosition.x += bulletType.GetX();
-                    shotPosition.y += bulletType.GetY();
+                    shotPosition.x += bulletType.X;
+                    shotPosition.y += bulletType.Y;
                     // ShotPositionの位置/角度で弾を撃つ
-                    Instantiate(bullet, shotPosition, Quaternion.Euler(0, 0, bulletType.GetZ()));
+                    Instantiate(bullet, shotPosition, Quaternion.Euler(0, 0, bulletType.Z));
                 }
                 GetComponent<AudioSource>().Play();
             }
@@ -111,7 +111,7 @@ public class Player : Spaceship
         // プレイヤーの座標を取得
         Vector2 pos = transform.position;
 
-        pos += direction * speed * Time.deltaTime;
+        pos += direction * (speed + 1) * Time.deltaTime;
 
         // プレイヤーのサイズを取得
         Vector2 size = GetComponent<BoxCollider2D>().size;

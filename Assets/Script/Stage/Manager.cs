@@ -15,6 +15,7 @@ public class Manager : MonoBehaviour
     #region インスペクターで設定
     [Header("Player Prefab")] public GameObject playerPrefab;
     [Header("BGM Object")] public GameObject bgm;
+    [Header("BossHP Object")] public GameObject bossHPBar;
     [Header("メインメッセージ用のText")] public Text mainMessage;
     [Header("パワーステータス用のText")] public Text powerStatus;
     [Header("スピードステータス用のText")] public Text speedStatus;
@@ -40,6 +41,8 @@ public class Manager : MonoBehaviour
     private static int currentWave = 0;
     // 全ウェーブ数
     private static int allWavesCount = 0;
+    // コンティニュー回数
+    private static int continueCount = 0;
     #endregion
 
     void Start() 
@@ -64,7 +67,8 @@ public class Manager : MonoBehaviour
             if (player == null)
             {
                 StartCoroutine(GameOver());
-            } else
+            } 
+            else
             {
                 UpdateDisplayStatus();
             }
@@ -105,6 +109,7 @@ public class Manager : MonoBehaviour
         isPlaying = false;
         bgm.GetComponent<AudioSource>().Stop();
         yield return new WaitForSeconds(4);
+        continueCount++;
         SceneManager.LoadScene("GameOver");
     }
 
@@ -197,5 +202,10 @@ public class Manager : MonoBehaviour
             default:
                 return "no message";
         }
+    }
+
+    public int ContinueCount
+    {
+        get { return continueCount; }
     }
 }
