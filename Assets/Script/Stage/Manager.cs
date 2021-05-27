@@ -26,8 +26,6 @@ public class Manager : MonoBehaviour
     private GameObject message;
     // プレイヤー
     private GameObject player;
-    // 敵の管理
-    private Emitter emitter;
     // スコア
     private Score score;
     #endregion
@@ -41,8 +39,6 @@ public class Manager : MonoBehaviour
     private static int currentWave = 0;
     // 全ウェーブ数
     private static int allWavesCount = 0;
-    // コンティニュー回数
-    private static int continueCount = 0;
     #endregion
 
     void Start() 
@@ -51,8 +47,6 @@ public class Manager : MonoBehaviour
         currentWave = 0;
         // Titleゲームオブジェクトを検索し取得する
         message = GameObject.Find("Message");
-        // Emitterゲームオブジェクトを検索し取得する
-        emitter = FindObjectOfType<Emitter>();
         // Scoreゲームオブジェクトを検索し取得する
         score = FindObjectOfType<Score>();
         // ゲーム開始
@@ -109,7 +103,7 @@ public class Manager : MonoBehaviour
         isPlaying = false;
         bgm.GetComponent<AudioSource>().Stop();
         yield return new WaitForSeconds(4);
-        continueCount++;
+        GameParameter.ContinueCount++;
         SceneManager.LoadScene("GameOver");
     }
 
@@ -202,10 +196,5 @@ public class Manager : MonoBehaviour
             default:
                 return "no message";
         }
-    }
-
-    public int ContinueCount
-    {
-        get { return continueCount; }
     }
 }

@@ -8,13 +8,6 @@ public class Score : MonoBehaviour
     #region インスペクターで設定
     [Header("スコアを表示するText")] public Text scoreText;
     #endregion
-
-    #region プライベート変数
-    // Manager
-    private Manager manager;
-    // スコア
-    private int score = 0;
-    #endregion
     
     /// <summary>
     /// Start
@@ -30,7 +23,7 @@ public class Score : MonoBehaviour
     private void Update() 
     {
         // スコアを表示する
-        scoreText.text = (score + manager.ContinueCount).ToString();
+        scoreText.text = (GameParameter.Score + GameParameter.ContinueCount).ToString();
     }
 
     /// <summary>
@@ -38,9 +31,7 @@ public class Score : MonoBehaviour
     /// </summary>
     public void Initialize()
     {
-        manager = FindObjectOfType<Manager>();
-        // スコアを0に戻す
-        score = 0;
+        GameParameter.Score = 0;
     }
 
     /// <summary>
@@ -49,6 +40,6 @@ public class Score : MonoBehaviour
     /// <param name="point"></param>
     public void AddPoint(int point)
     {
-        score += point;
+        GameParameter.Score += point;
     }
 }
