@@ -21,5 +21,5 @@ public abstract class Item : MonoBehaviour
     /// アイテムを使う
     /// </summary>
     /// <param name="player"></param>
-    public abstract void UseItem(Player player);
+    public abstract void UseItem();
 }

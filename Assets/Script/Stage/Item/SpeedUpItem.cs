@@ -15,7 +15,7 @@ public class SpeedUpItem : Item
     /// アイテムを使用する（スピードアップ）
     /// </summary>
     /// <param name="player"></param>
-    public override void UseItem(Player player)
+    public override void UseItem()
     {
         if (isUsed)
         {
@@ -23,9 +23,9 @@ public class SpeedUpItem : Item
         }
         isUsed = true;
         GameObject soundObject = (GameObject)Instantiate(se, transform.position, transform.rotation);
-        player.speed += speed;
-        if (player.speed > player.maxSpeed) {
-            player.speed = player.maxSpeed;
+        GameParameter.PlayerSpeed += speed;
+        if (GameParameter.PlayerSpeed > GameConst.MAX_PLAYER_SPEED) {
+            GameParameter.PlayerSpeed = GameConst.MAX_PLAYER_SPEED;
         }
         Destroy(soundObject, 3);
         Destroy(gameObject);

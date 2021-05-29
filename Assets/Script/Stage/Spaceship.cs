@@ -7,7 +7,6 @@ public abstract class Spaceship : MonoBehaviour
 {
     #region インスペクターで設定
     [Header("移動スピード")] public float speed;
-    [Header("最大移動スピード")] public int maxSpeed;
     [Header("ショットレベル")] public int shotLevel;
     [Header("弾を撃つ間隔")] public float shotDelay;
     [Header("弾を撃つかどうか")] public bool canShot;

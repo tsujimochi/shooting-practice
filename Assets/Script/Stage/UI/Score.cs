@@ -10,14 +10,6 @@ public class Score : MonoBehaviour
     #endregion
     
     /// <summary>
-    /// Start
-    /// </summary>
-    private void Start() 
-    {
-        Initialize();
-    }
-    
-    /// <summary>
     /// Update
     /// </summary>
     private void Update() 

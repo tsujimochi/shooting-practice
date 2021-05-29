@@ -43,16 +43,4 @@ public class GameOver : MonoBehaviour
             }
         }
     }
-
-    /**
-     * 戻るボタンが押下された時の処理
-     */
-    public void PressBackButton()
-    {
-        if (firstPush) {
-            return;
-        }
-        firstPush = true;
-        SceneManager.LoadScene("Top");
-    }
 }

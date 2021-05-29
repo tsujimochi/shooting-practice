@@ -28,6 +28,8 @@ public class Manager : MonoBehaviour
     private GameObject player;
     // スコア
     private Score score;
+    // Const
+
     #endregion
 
     #region static変数
@@ -43,6 +45,8 @@ public class Manager : MonoBehaviour
 
     void Start() 
     {
+        // スコア初期化
+        GameParameter.Score = 0;
         // wave初期化
         currentWave = 0;
         // Titleゲームオブジェクトを検索し取得する
@@ -104,6 +108,7 @@ public class Manager : MonoBehaviour
         bgm.GetComponent<AudioSource>().Stop();
         yield return new WaitForSeconds(4);
         GameParameter.ContinueCount++;
+        GameParameter.InitializePlayerStatus();
         SceneManager.LoadScene("GameOver");
     }
 
@@ -178,11 +183,11 @@ public class Manager : MonoBehaviour
     /// </summary>
     private void UpdateDisplayStatus()
     {
-        Player playerScript = player.GetComponent<Player>();
-        powerStatus.text = "Power " + (playerScript.shotLevel + 1) + " / " + playerScript.GetMaxShotLevel();
+        // 画面に表示するときは1始まりの値
+        powerStatus.text = "Power " + (GameParameter.PlayerPower + 1) + " / " + GameConst.MAX_PLAYER_POWER;
 
-        int nowSpeed = (int)(Mathf.Floor(playerScript.speed / 2) + 1);
-        int maxSpeed = (int)(Mathf.Floor(playerScript.maxSpeed / 2) + 1);
+        int nowSpeed = (int)(Mathf.Floor(GameParameter.PlayerSpeed / 2) + 1);
+        int maxSpeed = (int)(Mathf.Floor(GameConst.MAX_PLAYER_SPEED / 2) + 1);
         speedStatus.text = "Speed " + nowSpeed + " / " + maxSpeed;
     }
 

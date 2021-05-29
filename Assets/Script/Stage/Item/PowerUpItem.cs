@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PowerUpItem : Item
 {
@@ -15,7 +13,7 @@ public class PowerUpItem : Item
     /// アイテムを使用する（パワーアップ）
     /// </summary>
     /// <param name="player"></param>
-    public override void UseItem(Player player)
+    public override void UseItem()
     {
         if (isUsed)
         {
@@ -23,9 +21,9 @@ public class PowerUpItem : Item
         }
         isUsed = true;
         GameObject soundObject = (GameObject)Instantiate(se, transform.position, transform.rotation);
-        if (player.shotLevel + 1 < player.GetMaxShotLevel())
+        if (GameParameter.PlayerPower + 1 < GameConst.MAX_PLAYER_POWER)
         {
-            player.shotLevel += power;
+            GameParameter.PlayerPower += power;
         }
         Destroy(soundObject, 3);
         Destroy(gameObject);

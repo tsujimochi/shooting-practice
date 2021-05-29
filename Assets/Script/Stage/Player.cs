@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : Spaceship
@@ -44,7 +43,7 @@ public class Player : Spaceship
         while (true) {
             if (canControl)
             {
-                Shot shot = playerShotType.GetShotType(shotLevel);
+                Shot shot = playerShotType.GetShotType(GameParameter.PlayerPower);
                 foreach (BulletType bulletType in shot.Bullets)
                 {
                     Vector2 shotPosition = transform.position;
@@ -56,7 +55,7 @@ public class Player : Spaceship
                 GetComponent<AudioSource>().Play();
             }
             // 次の弾発出までのディレイ
-            yield return new WaitForSeconds(playerShotType.GetShotDelay(shotLevel));
+            yield return new WaitForSeconds(playerShotType.GetShotDelay(GameParameter.PlayerPower));
         }
     }
 
@@ -93,10 +92,6 @@ public class Player : Spaceship
             Move(direction);
         }
     }
-    public int GetMaxShotLevel()
-    {
-        return maxShotLevel;
-    }
 
     /// <summary>
     /// 移動
@@ -111,7 +106,7 @@ public class Player : Spaceship
         // プレイヤーの座標を取得
         Vector2 pos = transform.position;
 
-        pos += direction * (speed + 1) * Time.deltaTime;
+        pos += direction * (GameParameter.PlayerSpeed + 1) * Time.deltaTime;
 
         // プレイヤーのサイズを取得
         Vector2 size = GetComponent<BoxCollider2D>().size;
@@ -144,7 +139,7 @@ public class Player : Spaceship
         } else if (layerName == LAYER_ENEMY_NAME) {
             BeShot();
         } else if (layerName == LAYER_ITEM_NAME) {
-            c.gameObject.GetComponent<Item>().UseItem(this);
+            c.gameObject.GetComponent<Item>().UseItem();
         }
     }
 

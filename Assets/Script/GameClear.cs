@@ -5,17 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class GameClear : MonoBehaviour
 {
-    private bool firstPush = false; 
+    private void Start()
+    {
+        GameParameter.InitializePlayerStatus();
+    }
 
     /**
      * 次のステージへが押下された時の処理
      */
     public void PressBackButton()
     {
-        if (firstPush) {
-            return;
-        }
-        firstPush = true;
         SceneManager.LoadScene("Top");
     }
 }
