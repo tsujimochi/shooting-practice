@@ -19,14 +19,6 @@ public class Score : MonoBehaviour
     }
 
     /// <summary>
-    /// ゲーム開始前の状態に戻す
-    /// </summary>
-    public void Initialize()
-    {
-        GameParameter.Score = 0;
-    }
-
-    /// <summary>
     /// ポイントの追加
     /// </summary>
     /// <param name="point"></param>

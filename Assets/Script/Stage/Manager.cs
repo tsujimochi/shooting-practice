@@ -45,8 +45,6 @@ public class Manager : MonoBehaviour
 
     void Start() 
     {
-        // スコア初期化
-        GameParameter.Score = 0;
         // wave初期化
         currentWave = 0;
         // Titleゲームオブジェクトを検索し取得する
@@ -85,8 +83,6 @@ public class Manager : MonoBehaviour
     {
         // BGMスタート
         bgm.GetComponent<AudioSource>().Play();
-        // ゲームスタート時にタイトルを非表示にしてプレイヤーを作成する
-        score.Initialize();
 
         // 一定時間ステージ名を表示した後、ゲームを開始する
         mainMessage.text = GetMessage(MessageId.Title);

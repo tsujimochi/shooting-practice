@@ -9,15 +9,13 @@ public class GameOver : MonoBehaviour
     #region インスペクターで設定
     [Header("メニュー")] public GameObject menuObject;
     [Header("ゲームオーバーテキスト")] public GameObject gameOverTextObject;
+    [Header("Tipsテキスト")] public Text tipsText;
     #endregion 
-
-
-    #region プライベート変数
-    private bool firstPush = false;
-    #endregion
 
     IEnumerator Start()
     {
+        // スコア初期化
+        GameParameter.Score = 0;
         Text text = gameOverTextObject.GetComponent<Text>();
         while(text.color.a < 1)
         {
@@ -26,6 +24,7 @@ public class GameOver : MonoBehaviour
         }
         menuObject.SetActive(true);
         menuObject.transform.GetChild(0).gameObject.GetComponent<Selectable>().Select();
+        tipsText.enabled = true;
     }
 
     private void Update()

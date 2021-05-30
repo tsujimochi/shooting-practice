@@ -35,7 +35,7 @@ public class StageClear : MonoBehaviour
         AudioSource resultAudio = resultObject.GetComponent<AudioSource>();
         AudioSource scoreAudio = GetComponent<AudioSource>();
         int powerBonus = GameParameter.PlayerPower * POWER_BONUS;
-        int speedBonus = (int)(Mathf.Floor(GameParameter.PlayerSpeed / 2) + 1) * SPEED_BONUS;
+        int speedBonus = GameParameter.PlayerSpeed * SPEED_BONUS;
         while (scoreTextLineCount <= 3)
         {
             yield return new WaitForSeconds(1);
@@ -84,7 +84,7 @@ public class StageClear : MonoBehaviour
         }
         if (scoreTextLineCount > 2)
         {
-            retVal += $"\nSpeedBonus : {SPEED_BONUS} x {(int)(Mathf.Floor(GameParameter.PlayerSpeed / 2))} = {speedBonus}";
+            retVal += $"\nSpeedBonus : {SPEED_BONUS} x {GameParameter.PlayerSpeed} = {speedBonus}";
         }
         return retVal;
     }
